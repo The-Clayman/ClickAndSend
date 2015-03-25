@@ -63,7 +63,7 @@ public class ClickAndSend extends ActionBarActivity {
                 }
                 else{
                     intent.setClassName(packageName,className);
-                    startActivity(intent);
+                    startActivity(intent);  
                 }
             }
 
