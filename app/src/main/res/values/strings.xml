@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Click&amp;Send</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_click_and_send">ClickAndSend</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
+    <string name="title_activity_new_profile">NewProfile</string>
+    <string name="title_activity_history_list">HistoryList</string>
+</resources>
