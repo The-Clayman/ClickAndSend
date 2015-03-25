@@ -20,7 +20,7 @@ public class ClickAndSend extends ActionBarActivity {
     private static final int Request_blu = 1;
 
 
-    @Override
+    @Override  
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_click_and_send);
