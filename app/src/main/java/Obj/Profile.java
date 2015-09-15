@@ -138,6 +138,10 @@ public class Profile implements Serializable {
         return name+'\n'+date;
     }
 
+    public String getNameOnly(){
+        return name;
+    }
+
 
     public ArrayList<dataString> getDataList() {
         return dataList;

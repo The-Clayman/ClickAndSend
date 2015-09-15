@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -44,7 +45,7 @@ import Obj.userData;
 public class EditProfile extends ActionBarActivity implements Serializable {
     TextView tv;
     userData ud1;
-    Button save, editTitle, newField, addFile, exportProfile;
+    ImageButton save,newField, addFile, exportProfile;
     ListView lv;
     ArrayList<dataString> myList;
     MyCustomListAdapter customListAdapter;
@@ -63,11 +64,10 @@ public class EditProfile extends ActionBarActivity implements Serializable {
         ud1 = ((MyData) this.getApplication()).getUd();
         setContentView(R.layout.activity_edit_profile);
         tv = (TextView) findViewById(R.id.Profile_Name);
-        save = (Button) findViewById(R.id.save_button);
-        editTitle = (Button) findViewById(R.id.edit_profile_name);
-        newField = (Button) findViewById(R.id.new_field);
-        addFile = (Button) findViewById(R.id.add_file);
-        exportProfile = (Button) findViewById(R.id.export);
+        save = (ImageButton) findViewById(R.id.save_button);
+        newField = (ImageButton) findViewById(R.id.new_field);
+        addFile = (ImageButton) findViewById(R.id.add_file);
+        exportProfile = (ImageButton) findViewById(R.id.export);
         tempProfile = new Profile();
 
         Intent i = getIntent();
@@ -95,7 +95,6 @@ public class EditProfile extends ActionBarActivity implements Serializable {
                 tv.setText(tempProfile.getName().toString());
                 fromHistory = true;
                 save.setVisibility(View.GONE);
-                editTitle.setVisibility(View.GONE);
                 newField.setVisibility(View.GONE);
                 addFile.setVisibility(View.GONE);
 
@@ -171,9 +170,13 @@ public class EditProfile extends ActionBarActivity implements Serializable {
 
 
         switch (v.getId()) {
-            case R.id.edit_profile_name:
+            case R.id.Profile_Name:
                 isChanged = true;
                 final EditText input = new EditText(EditProfile.this);
+                if (!tempProfile.getNameOnly().equals("null")) {
+
+                    input.setText(tempProfile.getNameOnly());
+                }
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(EditProfile.this);
                 alertDialog.setTitle("- Edit title -");
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -380,7 +383,7 @@ public class EditProfile extends ActionBarActivity implements Serializable {
         boolean flag;
         String g;
         TextView info;
-        Button DeleteInfo;
+        ImageButton DeleteInfo;
         String profileTitle=tv.toString();
 
         public MyCustomListAdapter( EditProfile theActivity, int viewResourceId, ArrayList<dataString> objects )
@@ -390,7 +393,7 @@ public class EditProfile extends ActionBarActivity implements Serializable {
 
            // mItems.addAll(MainActivity.ud.getFieldsTitles(tempIndex));///#$%#$@%@#$%@need to get profile index from getExtra.
             info = (TextView)findViewById(R.id.info);
-            DeleteInfo = (Button)findViewById(R.id.delete_field);
+            DeleteInfo = (ImageButton)findViewById(R.id.delete_field);
 
             flag=false;
             g="";
@@ -424,7 +427,7 @@ public class EditProfile extends ActionBarActivity implements Serializable {
             View row=inflater.inflate(R.layout.edit_profile_row, parent, false);
 
             TextView fName = (TextView) row.findViewById(R.id.info);
-            Button del=(Button)row.findViewById(R.id.delete_field);
+            ImageButton del=(ImageButton)row.findViewById(R.id.delete_field);
 
 
             if (fromHistory){
@@ -473,6 +476,9 @@ public class EditProfile extends ActionBarActivity implements Serializable {
                     else {
                         if (fromHistory && !mItems.get(pos).CheckisAFile()) return;
                         final EditText input = new EditText(EditProfile.this);
+                        if (!mItems.get(pos).getLine().equals("________")){
+                            input.setText(mItems.get(pos).getLine());
+                        }
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(EditProfile.this);
                         alertDialog.setTitle("- Edit field -");
                         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(

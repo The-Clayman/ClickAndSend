@@ -19,7 +19,12 @@
 
 
 
-        <Button
+        <ImageButton
+            android:adjustViewBounds="true"
+            android:padding="1dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@mipmap/delete"
             android:id="@+id/delete_field"
             android:layout_width="0dp"
             android:layout_height="match_parent"

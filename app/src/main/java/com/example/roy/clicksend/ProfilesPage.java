@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,7 +40,7 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
 
     userData ud1;
     boolean flag;
-    public Button newProfile , ListenBottun , SetVisibleButton;
+    public ImageButton newProfile , ListenBottun , SetVisibleButton;
     ListView lv;
     MyCustomListAdapter customListAdapter;
     ArrayList <String> myList;
@@ -67,9 +68,9 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
             sendTohandler(MainActivity.MESSAGE_TOAST, -1, -1, "Couldn't complete task");
         }
         setContentView(R.layout.profiles_page);
-        newProfile=(Button)findViewById(R.id.add_new_profile);
-        ListenBottun=(Button)findViewById(R.id.listen_button);
-        SetVisibleButton = (Button)findViewById(R.id.set_visible);
+        newProfile=(ImageButton)findViewById(R.id.add_new_profile);
+        ListenBottun=(ImageButton)findViewById(R.id.listen_button);
+        SetVisibleButton = (ImageButton)findViewById(R.id.set_visible);
         lv=(ListView)findViewById(R.id.allProfiles);
         myList =ud1.getProfileTitles();
         contextProfilePage = getApplicationContext();
@@ -78,7 +79,10 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
         if (MainActivity.mTransService != null) {
             if (MainActivity.mTransService.getmAcceptThread() != null) {
                 if (D) Log.e(TAG, "++ onCeate, acceptThead is running ++");
-                ListenBottun.setText("Listening");
+                //ListenBottun.setText("Listening");
+               // ListenBottun = (ImageButton)findViewById(R.id.listen_button);
+               // ListenBottun.setImageResource(R.mipmap.listen2);
+               // sendTohandler(MainActivity.StateListenChange , -1 ,-1,null);
 
             }
         }
@@ -95,6 +99,7 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
     public  void sendTohandler(int what , int arg1 , int arg2 ,String obj){
         Message msg = new Message();
         msg.obj = obj; msg.what = what;
+        msg.arg1 = arg1;
         try {
             messenger.send(msg);
         } catch (RemoteException e) {
@@ -186,11 +191,13 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
                 break;
             case R.id.listen_button:
                 MainActivity.mTransService.setState(Transmission.STATE_LISTEN);
-                if (this.ListenBottun.getText().toString().equals("Listening")) {
+              //  if (this.ListenBottun.getText().toString().equals("Listening")) {
+                if (MainActivity.isListen) {
                  //   MainActivity.mTransService.cancellAcceptThread();
                     MainActivity.mTransService.stop();
                     if (D) Log.e(TAG, "++ Listening pressed, stop listening ++");
-                    this.ListenBottun.setText("Listen");
+//
+                    sendTohandler(MainActivity.StateListenChange , MainActivity.SetStateListenOff ,-1,null );
                     MainActivity.mTransService.setState(MainActivity.STATE_NONE);
                     return;
                 }
@@ -209,17 +216,20 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
                     return;
                 }
                 setupTrans();
-                sendTohandler(MainActivity.MESSAGE_TOAST, -1, -1, "Yout device name is:\n"+MainActivity.mTransService.getDiviceName());
-                this.ListenBottun.setText("Listening");
+                sendTohandler(MainActivity.MESSAGE_TOAST, -1, -1, "Yout device name is:\n" + MainActivity.mTransService.getDiviceName());
+               // this.ListenBottun.setText("Listening");
+                sendTohandler(MainActivity.StateListenChange, MainActivity.SetStateListenOn, -1, null);
                 MainActivity.mTransService.setState(Transmission.STATE_LISTEN);
+           //     refreshAll();
+            //    ListenBottun.setImageResource(R.mipmap.listen2);
 
                     break;
                 }
 
         }
-    public void changeListenButonText(String state){
-        this.ListenBottun.setText(state);
-    }
+//    public void changeListenButonText(String state){
+//        this.ListenBottun.setText(state);
+//    }
     public  void setupTrans(){
         Log.d(TAG, "setupTrance()");
         if (MainActivity.mTransService.getmAcceptThread() != null) {
@@ -228,7 +238,7 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
        // MainActivity.mTransService.setmAcceptThread(null);
         MainActivity.mTransService.start();
         //ListenBottun.setText("Listening");
-        this.changeListenButonText("listening");
+       // this.changeListenButonText("listening");
 
 
 
@@ -250,7 +260,7 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
         boolean flag;
         String g;
         TextView TitleName;
-        Button edit,send;
+        ImageButton edit,send;
 
 
         public MyCustomListAdapter( ProfilesPage theActivity, int viewResourceId, ArrayList<String> objects)
@@ -301,13 +311,13 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
             TitleName.setOnClickListener(this);
             TitleName.setTag(title);
 
-            edit=(Button)row.findViewById(R.id.delete_profile);
+            edit=(ImageButton)row.findViewById(R.id.delete_profile);
             edit.setFocusableInTouchMode(false);
             edit.setFocusable(false);
             edit.setOnClickListener(this);
             edit.setTag(title);
 
-            send=(Button)row.findViewById(R.id.edit_profile_Send);
+            send=(ImageButton)row.findViewById(R.id.edit_profile_Send);
             send.setFocusableInTouchMode(false);
             send.setFocusable(false);
             send.setOnClickListener(this);
@@ -337,6 +347,7 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
                             mItems.remove(entry);
                             ud1.UserList.removeProfile(pos);
                             Function.saveObj(ud1, getApplicationContext());
+
                             notifyDataSetChanged();
                         }
                     });

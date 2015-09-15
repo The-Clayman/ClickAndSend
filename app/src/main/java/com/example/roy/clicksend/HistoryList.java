@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,6 @@ public class HistoryList extends ActionBarActivity implements Serializable {
 
 
     userData ud1;
-    Button back;
     ListView lv;
     MyCustomListAdapter customListAdapter;
     ArrayList<String> myList;
@@ -65,7 +65,6 @@ public class HistoryList extends ActionBarActivity implements Serializable {
         }
 
 
-        back = (Button)findViewById(R.id.back_button);
         lv=(ListView)findViewById(R.id.allHistory);
         myList =ud1.getProfileHistoryTitles();
 
@@ -114,20 +113,7 @@ public class HistoryList extends ActionBarActivity implements Serializable {
 
         return super.onOptionsItemSelected(item);
     }
-    public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.back_button:
-                Intent i = new Intent(this, ProfilesPage.class);
-                i.putExtra("Name", "-1");
-                i.putExtra("messenger", messenger);
-                startActivity(i);
-                finish();
-                break;
-
-        }
-
-    }
 
 
 
@@ -145,7 +131,7 @@ public class HistoryList extends ActionBarActivity implements Serializable {
 
         String g;
         TextView TitleName;
-        Button delete;
+        ImageButton delete;
 
 
         public MyCustomListAdapter( HistoryList theActivity, int viewResourceId, ArrayList<String> objects)
@@ -192,7 +178,7 @@ public class HistoryList extends ActionBarActivity implements Serializable {
             TitleName.setText(title);
             TitleName.setOnClickListener(this);
             TitleName.setTag(title);
-            delete=(Button)row.findViewById(R.id.delete_history_profile);
+            delete=(ImageButton)row.findViewById(R.id.delete_history_profile);
             delete.setFocusableInTouchMode(false);
             delete.setFocusable(false);
             delete.setOnClickListener(this);

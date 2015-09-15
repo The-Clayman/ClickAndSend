@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
@@ -29,6 +30,9 @@ import Obj.userData;
 public class MainActivity extends ActionBarActivity  implements Serializable{
     private static final String TAG = "MainActivity";
     private static final boolean D = true;
+
+    public static boolean isListen = false;
+    public static boolean isVisible = false;
 
     public static final int MESSAGE_STATE_CHANGE = 1;
     public static final int MESSAGE_READ = 2;
@@ -47,7 +51,14 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
     public static final int STATE_CONNECTED = 3;  // now connected to a remote device
     public static Transmission mTransService = null;
     public static Profile receivedProfileTrans = null;
-    public static Button listenButton = null;
+    public static ImageButton listenButton = null;
+
+    public static final int StateListenChange = 10;
+    public static final int SetStateListenOn = 11;
+    public static final int SetStateListenOff = 12;
+    public static final int SetStateListentoggle = 13;
+
+
 
 
 
@@ -98,13 +109,13 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
 
         return super.onOptionsItemSelected(item);
     }
-    private final Handler handler = new Handler(){
+    private final Handler handler = new Handler() {
         @Override
-        public void handleMessage(Message msg){ //override
-            switch (msg.what){
+        public void handleMessage(Message msg) { //override
+            switch (msg.what) {
                 case MESSAGE_STATE_CHANGE:
-                    if(D) Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
-                    switch(msg.arg1){
+                    if (D) Log.i(TAG, "MESSAGE_STATE_CHANGE: " + msg.arg1);
+                    switch (msg.arg1) {
                         case STATE_CONNECTED:
                             break;
                         case STATE_CONNECTING:
@@ -112,8 +123,11 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
                         case STATE_LISTEN:
                             break;
                         case STATE_NONE:
-                            if (MainActivity.listenButton!=null){
-                                MainActivity.listenButton.setText("Listen");
+                            if (MainActivity.listenButton != null) {
+                                // MainActivity.listenButton.setText("Listen");
+//                                MainActivity.listenButton.setImageResource(R.mipmap.listen1);
+//                                isListen = false;
+
                             }
 
 //                            if (ProfilesPage.)
@@ -128,22 +142,21 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
 
                     break;
                 case MESSAGE_READ:
-                    String ProfileName =(String) msg.obj;
-                    Toast.makeText(getApplicationContext(), ProfileName+ " received!", Toast.LENGTH_SHORT).show();
-
+                    String ProfileName = (String) msg.obj;
+                    Toast.makeText(getApplicationContext(), ProfileName + " received!", Toast.LENGTH_SHORT).show();
 
 
                     break;
                 case MESSAGE_TOAST:
-                    switch(msg.arg1) {
+                    switch (msg.arg1) {
                         case LongToastDuration:
                             Toast.makeText(getApplicationContext(), (String) msg.obj,
                                     Toast.LENGTH_LONG).show();
 
                             break;
                         default:
-                        Toast.makeText(getApplicationContext(), (String) msg.obj,
-                                Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), (String) msg.obj,
+                                    Toast.LENGTH_SHORT).show();
                             break;
                     }
                     break;
@@ -155,12 +168,45 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
                     break;
                 case proceed_To_Send_Files:
                     ClickAndSend.sendFilesInit();
+                    break;
+                case StateListenChange:
+                    switch (msg.arg1) {
+                        case SetStateListentoggle:
+                            if (isListen) {
+                                isListen = false;
+                                if (listenButton != null) {
+                                    listenButton.setImageResource(R.mipmap.listen2);
+                                }
+
+                            } else {
+                                isListen = true;
+                                if (listenButton != null) {
+                                    listenButton.setImageResource(R.mipmap.listen1);
+                                }
+                            }
+                            break;
+                        case SetStateListenOn:
+                            isListen = true;
+                            if (listenButton != null) {
+                                listenButton.setImageResource(R.mipmap.listen1);
+                            }
+                            break;
+                        case SetStateListenOff:
+                            isListen = false;
+                            if (listenButton != null) {
+                               listenButton.setImageResource(R.mipmap.listen2);
+                            }
+                            break;
 
 
+                    }
+                    break;
             }
         }
+
+
+
     };
 
-
-
 }
+

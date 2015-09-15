@@ -23,20 +23,21 @@
                 android:id="@+id/Profile_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="7"
+                android:layout_weight="8"
+                android:onClick="onClickEditProfile"
                 android:gravity="center"
                 android:text="Profile Name"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
-            <Button
-                android:id="@+id/edit_profile_name"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:onClick="onClickEditProfile"
-                android:text="/"
-                android:textStyle="bold" />
-            <Button
+            <!--<Button-->
+                <!--android:id="@+id/edit_profile_name"-->
+                <!--style="?android:attr/buttonStyleSmall"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:onClick="onClickEditProfile"-->
+                <!--android:text="/"-->
+                <!--android:textStyle="bold" />-->
+            <ImageButton
                 android:id="@+id/save_button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -44,7 +45,11 @@
                 android:layout_weight="1"
                 android:onClick="onClickEditProfile"
                 android:text="Save"
-                android:textStyle="bold" />
+                android:adjustViewBounds="true"
+                android:padding="6dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@mipmap/save" />
 
         </LinearLayout>
 
@@ -64,8 +69,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:weightSum="5" >
-            <Button
+            android:weightSum="3" >
+            <ImageButton
                 android:id="@+id/export"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -73,18 +78,26 @@
                 android:layout_weight="1"
                 android:onClick="onClickEditProfile"
                 android:text="Export\nProfile"
-                android:textStyle="bold" />
+                android:adjustViewBounds="true"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@mipmap/export" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/new_field"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:onClick="onClickEditProfile"
                 android:text="New Field"
-                android:textStyle="bold" />
-            <Button
+                android:adjustViewBounds="true"
+                android:padding="9dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@mipmap/new_field" />
+            <ImageButton
                 android:id="@+id/add_file"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
@@ -92,7 +105,11 @@
                 android:layout_weight="1"
                 android:onClick="onClickEditProfile"
                 android:text="Add file"
-                android:textStyle="bold" />
+                android:adjustViewBounds="true"
+                android:padding="9dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@mipmap/attach" />
 
 
         </LinearLayout>

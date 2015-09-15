@@ -18,19 +18,44 @@
             android:gravity="center"
             android:onClick="onClick_ProfilePage"
             android:text="ProfileName" />
-        <Button
-            android:id="@+id/edit_profile_Send"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:text="->" />
 
-        <Button
-            android:id="@+id/delete_profile"
+
+        <ImageButton
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="20"
-            android:text="x" />
+            android:id="@+id/edit_profile_Send"
+            android:layout_gravity="bottom"
+            android:adjustViewBounds="true"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@mipmap/send" />
+
+        <!--<Button-->
+            <!--android:id="@+id/edit_profile_Send"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="20"-->
+            <!--android:text="->" />-->
+
+        <!--<Button-->
+            <!--android:id="@+id/delete_profile"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="20"-->
+            <!--android:text="x" />-->
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:id="@+id/delete_profile"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@mipmap/delete" />
 
 
     </LinearLayout>

@@ -37,12 +37,17 @@
             android:layout_weight="80"
             android:gravity="center"
             android:id="@+id/history_row_title" />
-        <Button
+        <ImageButton
             android:id="@+id/delete_history_profile"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="20"
-            android:text="x" />
+            android:text="x"
+            android:adjustViewBounds="true"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@mipmap/delete"/>
 
 
 
