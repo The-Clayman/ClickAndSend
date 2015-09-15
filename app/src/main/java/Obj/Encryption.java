@@ -13,7 +13,7 @@ import javax.crypto.Cipher;
 /**
  * Created by roy on 5/16/15.
  */
-public class Enctiption {
+public class Encryption {
     final  int blockLen = 53;
     final  String xform = "RSA/ECB/PKCS1Padding";
     final  int keySize = 2048;
@@ -24,7 +24,7 @@ public class Enctiption {
         return pubk;
     }
 
-    public Enctiption(){
+    public Encryption(){
 
     }
 
