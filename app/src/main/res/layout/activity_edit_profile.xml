@@ -1,13 +1,103 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.roy.clicksend.EditProfile">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="9"
+    android:orientation="vertical"
+    tools:context="com.example.irithelpme.ListTableDetails" >
 
-    <TextView android:text="Edit Profile" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/aa2" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="9" >
+
+
+            <TextView
+                android:id="@+id/Profile_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="Profile Name"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <Button
+                android:id="@+id/edit_profile_name"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickEditProfile"
+                android:text="/"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/save_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickEditProfile"
+                android:text="Save"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8" >
+
+            <ListView
+                android:id="@+id/all_data_string"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </ListView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+            <Button
+                android:id="@+id/export"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickEditProfile"
+                android:text="Export\nProfile"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/new_field"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:onClick="onClickEditProfile"
+                android:text="New Field"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/add_file"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClickEditProfile"
+                android:text="Add file"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

@@ -1,4 +1,4 @@
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,22 +26,42 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/clickTitle"
+                android:id="@+id/tableNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:text="Click&amp;Send"
+                android:text="Profiles"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4" >
+            android:layout_weight="1"
+            android:weightSum="3" >
+
+            <Button
+                android:id="@+id/add_new_profile"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:onClick="onClick"
+                android:text="Add new profile"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7" >
 
             <ListView
-                android:id="@+id/paired_devises_list"
+                android:id="@+id/allProfiles"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
             </ListView>
@@ -50,40 +70,37 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:weightSum="4" >
+            android:weightSum="3" >
 
             <Button
-                android:id="@+id/scan_button"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:onClick="onClick"
-                android:text="Scan for devices"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/refresh"
+                android:id="@+id/history_button"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:onClick="onClick"
-                android:text="Refresh"
+                android:text="History"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/set_visible"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="Go Visible"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/listen_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="Listen"
                 android:textStyle="bold" />
 
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4" >
-
-            <ListView
-                android:id="@+id/available_devises_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-            </ListView>
         </LinearLayout>
     </LinearLayout>
 

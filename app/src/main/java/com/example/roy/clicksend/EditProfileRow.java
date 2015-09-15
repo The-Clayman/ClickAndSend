@@ -5,20 +5,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.Serializable;
 
-public class NewProfile extends ActionBarActivity {
+
+public class EditProfileRow extends ActionBarActivity implements Serializable {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_profile);
+        setContentView(R.layout.edit_profile_row);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_new_profile, menu);
+        getMenuInflater().inflate(R.menu.menu_edit_profile_row, menu);
         return true;
     }
 
@@ -36,4 +38,5 @@ public class NewProfile extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
