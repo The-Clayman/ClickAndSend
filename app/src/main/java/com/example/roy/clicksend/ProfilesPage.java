@@ -52,6 +52,8 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
 
     static Context contextProfilePage;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         flag = true;
@@ -70,6 +72,9 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
         setContentView(R.layout.profiles_page);
         newProfile=(ImageButton)findViewById(R.id.add_new_profile);
         ListenBottun=(ImageButton)findViewById(R.id.listen_button);
+        if (MainActivity.isListen){
+            sendTohandler(MainActivity.StateListenChange, MainActivity.SetStateListenOn, -1, null);
+        }
         SetVisibleButton = (ImageButton)findViewById(R.id.set_visible);
         lv=(ListView)findViewById(R.id.allProfiles);
         myList =ud1.getProfileTitles();
@@ -94,6 +99,29 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
         customListAdapter = new MyCustomListAdapter(this,R.layout.profiles_page,myList);
         lv.setAdapter(customListAdapter);
         MainActivity.listenButton = ListenBottun;
+        MainActivity.visibleBottun = SetVisibleButton;
+        if (MainActivity.isVisible){
+            SetVisibleButton.setImageResource(R.mipmap.visib);
+        }
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == REQUEST_ENABLE_BT)
+        {
+            if(resultCode != RESULT_CANCELED)
+            {
+                sendTohandler(MainActivity.MESSAGE_TOAST, -1, -1, "You went Visible");
+                SetVisibleButton.setImageResource(R.mipmap.visib);
+                MainActivity.isVisible = true;
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        SetVisibleButton.setImageResource(R.mipmap.invisib);
+                        MainActivity.isVisible = false;
+                    }
+                }, 300000);
+            }
+        }
     }
 
     public  void sendTohandler(int what , int arg1 , int arg2 ,String obj){
@@ -180,13 +208,23 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
 
                 break;
             case R.id.set_visible:
-                Intent discoverableIntent = new
-                        Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-                startActivity(discoverableIntent);
-             //   Toast.makeText(getApplicationContext() , "Set Visible",Toast.LENGTH_SHORT).show();
-                sendTohandler(MainActivity.MESSAGE_TOAST , -1,-1,"Set Visible");
+                if (MainActivity.isVisible){
+                    if (MainActivity.mTransService.mAdapter!= null)
+                    MainActivity.mTransService.mAdapter.cancelDiscovery();
+                    SetVisibleButton.setImageResource(R.mipmap.invisib);
+                    MainActivity.isVisible = false;
+                    sendTohandler(MainActivity.MESSAGE_TOAST, -1, -1, "You went Invisible");
 
+                }
+                else {
+                    Intent discoverableIntent = new
+                            Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+                    discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+                    // startActivity(discoverableIntent);
+                    startActivityForResult(discoverableIntent, REQUEST_ENABLE_BT);
+                    //   Toast.makeText(getApplicationContext() , "Set Visible",Toast.LENGTH_SHORT).show();
+
+                }
 
                 break;
             case R.id.listen_button:

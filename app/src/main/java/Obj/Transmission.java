@@ -297,6 +297,10 @@ public class Transmission {
 
             // Always cancel discovery because it will slow down a connection
             mAdapter.cancelDiscovery();
+            MainActivity.isVisible = false;
+            mHandler.obtainMessage(MainActivity.StateDiscoveryChange , -1 ,-1 , null).sendToTarget();
+
+
 
             // Make a connection to the BluetoothSocket
             try {
@@ -430,6 +434,9 @@ public class Transmission {
         public void cancel() {
             try {
                 mmSocket.close();
+                mHandler.obtainMessage(MainActivity.StateListenChange ,MainActivity.SetStateListenOff ,-1 , null).sendToTarget();
+
+
             } catch (IOException e) {
                 Log.e(TAG, "close() of connect socket failed", e);
             }

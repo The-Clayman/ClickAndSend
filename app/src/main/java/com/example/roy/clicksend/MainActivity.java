@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -52,11 +54,14 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
     public static Transmission mTransService = null;
     public static Profile receivedProfileTrans = null;
     public static ImageButton listenButton = null;
+    public static ImageButton visibleBottun = null;
 
     public static final int StateListenChange = 10;
     public static final int SetStateListenOn = 11;
     public static final int SetStateListenOff = 12;
     public static final int SetStateListentoggle = 13;
+    public static final int StateDiscoveryChange = 14;
+
 
 
 
@@ -67,6 +72,7 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         setContentView(R.layout.activity_main);
             userData ud = Function.LoadObj(getApplicationContext());
@@ -199,6 +205,17 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
                             break;
 
 
+                    }
+                    break;
+                case  StateDiscoveryChange:
+                    if (MainActivity.isVisible){
+                        visibleBottun.setImageResource(R.mipmap.visib);
+
+
+                        }
+
+                    else{
+                        visibleBottun.setImageResource(R.mipmap.invisib);
                     }
                     break;
             }
