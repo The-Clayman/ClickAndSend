@@ -1,26 +1,24 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import java.io.Serializable;
 
-
-public class EditProfileRow extends ActionBarActivity implements Serializable {
+public class HistoryList_Row extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_profile_row);
+        setContentView(R.layout.activity_history_list__row);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_edit_profile_row, menu);
+        getMenuInflater().inflate(R.menu.menu_history_list__row, menu);
         return true;
     }
 
@@ -38,5 +36,4 @@ public class EditProfileRow extends ActionBarActivity implements Serializable {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.Messenger;
 import android.util.Log;
 
-import com.example.roy.clicksend.MainActivity;
+import com.r_and_e.click_and_send.MainActivity;
 
 import java.io.IOException;
 import java.io.InputStream;

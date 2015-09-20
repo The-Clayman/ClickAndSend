@@ -1,8 +1,6 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 import android.app.Application;
-
-import java.util.ArrayList;
 
 import Obj.userData;
 

@@ -1,31 +1,25 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,7 +57,7 @@ public class EditProfile extends ActionBarActivity implements Serializable {
         super.onCreate(savedInstanceState);
         ud1 = ((MyData) this.getApplication()).getUd();
         setContentView(R.layout.activity_edit_profile);
-        tv = (TextView) findViewById(R.id.Profile_Name);
+        tv = (TextView) findViewById(R.id.profile_name);
         save = (ImageButton) findViewById(R.id.save_button);
         newField = (ImageButton) findViewById(R.id.new_field);
         addFile = (ImageButton) findViewById(R.id.add_file);
@@ -170,7 +164,7 @@ public class EditProfile extends ActionBarActivity implements Serializable {
 
 
         switch (v.getId()) {
-            case R.id.Profile_Name:
+            case R.id.profile_name:
                 isChanged = true;
                 final EditText input = new EditText(EditProfile.this);
                 if (!tempProfile.getNameOnly().equals("null")) {

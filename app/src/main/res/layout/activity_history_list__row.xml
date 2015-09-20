@@ -17,7 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.irithelpme.ListTableDetails_row" >
+    tools:context="com.r_and_e.irithelpme.ListTableDetails_row" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,9 +34,20 @@
         <TextView android:text="ProfileHistory"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="80"
+            android:layout_weight="60"
             android:gravity="center"
             android:id="@+id/history_row_title" />
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="20"
+            android:id="@+id/history_profile_send"
+            android:layout_gravity="bottom"
+            android:adjustViewBounds="true"
+            android:padding="3dp"
+            android:scaleType="fitCenter"
+            android:background="@null"
+            android:src="@mipmap/send" />
         <ImageButton
             android:id="@+id/delete_history_profile"
             android:layout_width="0dp"

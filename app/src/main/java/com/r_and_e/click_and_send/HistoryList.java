@@ -1,31 +1,26 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Messenger;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import Obj.Function;
-import Obj.Profile;
 import Obj.userData;
 
 
@@ -38,6 +33,7 @@ public class HistoryList extends ActionBarActivity implements Serializable {
     MyCustomListAdapter customListAdapter;
     ArrayList<String> myList;
     Messenger messenger;
+    static int FromeHistory = 2;
 
 
 
@@ -113,6 +109,15 @@ public class HistoryList extends ActionBarActivity implements Serializable {
 
         return super.onOptionsItemSelected(item);
     }
+    public void MoveToClickAndSend(int index){
+        Intent intent = new Intent(this, ClickAndSend.class);
+        intent.putExtra("Name", "" + index);
+        intent.putExtra("messenger", messenger);
+        intent.putExtra("whereFrom" , ""+FromeHistory);
+
+        startActivity(intent);
+        finish();
+    }
 
 
 
@@ -131,7 +136,7 @@ public class HistoryList extends ActionBarActivity implements Serializable {
 
         String g;
         TextView TitleName;
-        ImageButton delete;
+        ImageButton delete , send;
 
 
         public MyCustomListAdapter( HistoryList theActivity, int viewResourceId, ArrayList<String> objects)
@@ -184,6 +189,12 @@ public class HistoryList extends ActionBarActivity implements Serializable {
             delete.setOnClickListener(this);
             delete.setTag(title);
 
+            send=(ImageButton)row.findViewById(R.id.history_profile_send);
+            send.setFocusableInTouchMode(false);
+            send.setFocusable(false);
+            send.setOnClickListener(this);
+            send.setTag(title);
+
 
 
 
@@ -225,6 +236,9 @@ public class HistoryList extends ActionBarActivity implements Serializable {
                     });
                     dialog.show();
 
+                    break;
+                case R.id.history_profile_send:
+                    MoveToClickAndSend(pos);
                     break;
             }
         }

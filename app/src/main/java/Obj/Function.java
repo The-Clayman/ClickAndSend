@@ -1,9 +1,6 @@
 package Obj;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-
-import com.example.roy.clicksend.MainActivity;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -12,8 +9,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by roy on 4/1/15.

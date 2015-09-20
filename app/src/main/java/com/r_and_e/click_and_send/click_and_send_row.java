@@ -1,4 +1,4 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;

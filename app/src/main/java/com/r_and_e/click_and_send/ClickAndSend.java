@@ -1,4 +1,4 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 
 import android.app.Activity;
@@ -69,8 +69,13 @@ public class ClickAndSend extends Activity {
         if (null != i) {
 
             int ProfileIndex = Integer.parseInt(i.getStringExtra("Name"));
-
-            profile2send =new Profile(ud1.UserList.getProfilebyIndex(ProfileIndex));
+            int whereFrom = Integer.parseInt(i.getStringExtra("whereFrom"));
+            if (whereFrom == ProfilesPage.FromeProfilePage){
+                profile2send = new Profile(ud1.UserList.getProfilebyIndex(ProfileIndex));
+        }
+        else{
+                profile2send = new Profile(ud1.ReceivedList.getProfilebyIndex(ProfileIndex));
+            }
         }
 
         myList = new ArrayList<String>();

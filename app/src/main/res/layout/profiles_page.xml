@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:weightSum="9"
     android:orientation="vertical"
-    tools:context="com.example.irithelpme.ListTableDetails" >
+    tools:context="com.r_and_e.irithelpme.ListTableDetails" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,6 +33,25 @@
                 android:gravity="center"
                 android:text="Profiles"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="" />
+            <ImageButton
+                android:id="@+id/share_button"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="onClick"
+                android:text="Go Visible"
+                android:adjustViewBounds="true"
+                android:padding="9dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:src="@mipmap/share_icon" />
 
         </LinearLayout>
 

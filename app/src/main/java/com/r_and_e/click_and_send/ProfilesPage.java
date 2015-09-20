@@ -1,4 +1,4 @@
-package com.example.roy.clicksend;
+package com.r_and_e.click_and_send;
 
 import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -49,6 +48,7 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
     private static final boolean D = true;
     private  Handler handler;
     private Messenger messenger;
+    public static int FromeProfilePage = 1;
 
     static Context contextProfilePage;
 
@@ -162,8 +162,9 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
         Intent intent = new Intent(this, ClickAndSend.class);
         intent.putExtra("Name", "" + index);
         intent.putExtra("messenger", messenger);
+        intent.putExtra("whereFrom", ""+FromeProfilePage);
 
-        startActivity(intent);
+                startActivity(intent);
         finish();
     }
 
@@ -262,6 +263,20 @@ public class ProfilesPage extends ActionBarActivity implements Serializable {
             //    ListenBottun.setImageResource(R.mipmap.listen2);
 
                     break;
+            case R.id.share_button:
+                try
+                { Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Click&Send");
+                    String sAux = "\nLet me recommend you this application\n\n";
+                    sAux = sAux + "https://play.google.com/store/apps/details?id=com.r_and_e.click_and_send&hl=en \n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, sAux);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                }
+                catch(Exception e)
+                { //e.toString();
+                }
+                break;
                 }
 
         }

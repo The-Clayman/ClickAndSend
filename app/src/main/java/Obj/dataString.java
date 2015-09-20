@@ -1,22 +1,11 @@
 package Obj;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.provider.MediaStore;
 
-import com.example.roy.clicksend.MainActivity;
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
-import java.util.StringTokenizer;
 
 /**
  * Created by roy on 4/1/15.
