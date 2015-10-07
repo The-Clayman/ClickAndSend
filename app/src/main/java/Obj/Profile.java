@@ -31,6 +31,7 @@ public class Profile implements Serializable {
     String owner = "defalt";
     ArrayList<dataString> dataList;
     Vector<Integer> filesIndexes = new Vector<Integer>();
+    boolean containsFiles = false;
 
     public String getOwner() {
         return owner;
@@ -48,7 +49,9 @@ public class Profile implements Serializable {
         this.date = date;
     }
 
-
+    public boolean getcontainsFiles(){
+        return containsFiles;
+    }
 
 
     public Profile(ArrayList<dataString> dataList, String name, int serial) {
@@ -95,6 +98,7 @@ public class Profile implements Serializable {
         this.dataList.add(ds);
         if (ds.CheckisAFile()){
             this.filesIndexes.add(dataList.size()-1);
+            this.containsFiles = true;
         }
     }
     public void addDataByIndex(dataString ds , int index){
@@ -178,6 +182,7 @@ public class Profile implements Serializable {
         // for(int i = 0 ; i < this.filesIndexes.size() ; i++){
         while (!this.filesIndexes.isEmpty()) {
             this.removeByIndex(this.filesIndexes.lastElement());
+            this.containsFiles = false;
         }
     }
 

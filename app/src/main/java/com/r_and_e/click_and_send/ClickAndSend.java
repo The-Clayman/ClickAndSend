@@ -303,7 +303,7 @@ public class ClickAndSend extends Activity {
                         }
 
 
-                        MainActivity.mTransService.connect(device, SerializedProfile, messenger, mItems.get(pos));
+                        MainActivity.mTransService.connect(device, SerializedProfile, messenger, mItems.get(pos) , profile2send.getcontainsFiles() );
                     }
 
                     else{

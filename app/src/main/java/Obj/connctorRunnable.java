@@ -12,13 +12,15 @@ import com.r_and_e.click_and_send.MainActivity;
 
 public class connctorRunnable implements Runnable {
     byte[] SerializedProfile = null;
+    boolean containsFiles;
     Messenger messenger;
     String pos;
 
-    public connctorRunnable(byte[] SerializedProfile, Messenger messenger , String pos) {
+    public connctorRunnable(byte[] SerializedProfile, Messenger messenger , String pos , boolean containsFiles) {
         this.SerializedProfile = SerializedProfile;
         this.messenger = messenger;
         this.pos = pos;
+        this.containsFiles = containsFiles;
 
     }
 
@@ -42,8 +44,9 @@ public class connctorRunnable implements Runnable {
             }
         }
         sendTohandler(MainActivity.MESSAGE_TOAST , -1,-1,success+" "+pos);
-        sendTohandler(MainActivity.proceed_To_Send_Files , -1,-1,success+" "+pos);
-
+        if (containsFiles == true) {
+            sendTohandler(MainActivity.proceed_To_Send_Files, -1, -1, success + " " + pos);
+        }
     }
 
     public void sendTohandler(int what, int arg1, int arg2, String obj) {

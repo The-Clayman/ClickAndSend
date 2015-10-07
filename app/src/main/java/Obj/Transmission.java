@@ -102,7 +102,7 @@ public class Transmission {
         setState(STATE_LISTEN);
     }
 
-    public synchronized void connect(BluetoothDevice device ,byte[] SerializedProfile , Messenger messenger , String pos) {
+    public synchronized void connect(BluetoothDevice device ,byte[] SerializedProfile , Messenger messenger , String pos , boolean containsFiles) {
         if (D) Log.d(TAG, "connect to: " + device);
 
         // Cancel any thread attempting to make a connection
@@ -114,7 +114,7 @@ public class Transmission {
         if (mConnectedThread != null) {mConnectedThread.cancel(); mConnectedThread = null;}
 
         // Start the thread to connect with the given device
-        mConnectThread = new ConnectThread(device , SerializedProfile , messenger , pos);
+        mConnectThread = new ConnectThread(device , SerializedProfile , messenger , pos , containsFiles);
         mConnectThread.start();
         setState(STATE_CONNECTING);
     }
@@ -273,13 +273,15 @@ public class Transmission {
         private final byte[] SerializedProfile;
         private final String pos;
         private final Messenger messenger;
+        private boolean containsFiles;
 
-        public ConnectThread(BluetoothDevice device ,byte[] SerializedProfile , Messenger messenger , String pos) {
+        public ConnectThread(BluetoothDevice device ,byte[] SerializedProfile , Messenger messenger , String pos , boolean containsFiles) {
             mmDevice = device;
             BluetoothSocket tmp = null;
             this.SerializedProfile = SerializedProfile;
             this.pos = pos;
             this.messenger = messenger;
+            this.containsFiles = containsFiles;
 
             // Get a BluetoothSocket for a connection with the
             // given BluetoothDevice
@@ -309,7 +311,7 @@ public class Transmission {
                 mmSocket.connect();
                 // when connected seccesfuly , start writing process via handler
               //  mHandler.obtainMessage(MainActivity.ConnectedSeccesfuly , -1,-1,null);
-                Thread connector = new Thread(new connctorRunnable(SerializedProfile,messenger , pos));
+                Thread connector = new Thread(new connctorRunnable(SerializedProfile,messenger , pos , containsFiles));
                 connector.start();
 
 
