@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Created by roy on 4/1/15.
  */
 public class userData implements Serializable {
+    public boolean wizzard;
     int Serial;
     String name;
     public ListProfiles UserList;
@@ -21,6 +22,7 @@ public class userData implements Serializable {
         this.ReceivedList = new ListProfiles();
     }
     public userData(){
+        wizzard = true;
         Serial=-1;
         this.name="null";
         this.UserList = new ListProfiles();

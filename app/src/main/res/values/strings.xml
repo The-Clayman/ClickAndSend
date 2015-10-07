@@ -28,4 +28,5 @@
     <string name="title_activity_logo_page">LogoPage</string>
     <string name="title_activity_click_and_send_row">click_and_send_row</string>
     <string name="title_activity_history_list__row">HistoryList_Row</string>
+    <string name="title_activity_wizzard_main">wizzard_main</string>
 </resources>

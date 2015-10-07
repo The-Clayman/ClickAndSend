@@ -37,6 +37,7 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
     public static final int FinishApp = 6;
     public static final int ConnectedSeccesfuly = 7;
     public static final int proceed_To_Send_Files = 8;
+    public static final int proceed_To_ProfilePage = 9;
 
     public static final int LongToastDuration = 2;
 
@@ -62,6 +63,7 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,16 +73,33 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
             userData ud = Function.LoadObj(getApplicationContext());
             ((MyData) this.getApplication()).setData(ud);
         mTransService = new Transmission(this,handler);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(MainActivity.this, ProfilesPage.class);
-                Messenger messenger = new Messenger(handler);
-                i.putExtra("messenger", messenger);
-                startActivity(i);
+        if (ud.wizzard){
+            ud.wizzard = false;
+            ((MyData) getApplication()).setData(ud);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
-            }
-        }, 3000);
+                    Intent i = new Intent(MainActivity.this, wizzard_main.class);
+                    Messenger messenger = new Messenger(handler);
+                    i.putExtra("messenger", messenger);
+                    startActivity(i);
+
+                }
+            }, 3000);
+        }
+        else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent i = new Intent(MainActivity.this, ProfilesPage.class);
+                    Messenger messenger = new Messenger(handler);
+                    i.putExtra("messenger", messenger);
+                    startActivity(i);
+
+                }
+            }, 3000);
+        }
 
     }
 
@@ -210,6 +229,14 @@ public class MainActivity extends ActionBarActivity  implements Serializable{
                     else{
                         visibleBottun.setImageResource(R.mipmap.invisib);
                     }
+                    break;
+                case  proceed_To_ProfilePage:
+                    Intent i = new Intent(MainActivity.this, ProfilesPage.class);
+                    Messenger messenger = new Messenger(handler);
+                    i.putExtra("messenger", messenger);
+                    startActivity(i);
+
+
                     break;
             }
         }
