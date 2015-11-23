@@ -1,4 +1,4 @@
-package com.r_and_e.click_and_send;
+package com.r_and_e.click_send;
 
 
 import android.app.Activity;
@@ -37,7 +37,7 @@ import Obj.userData;
 public class ClickAndSend extends Activity {
     public static String EXTRA_DEVICE_ADDRESS = "device_address";
 
-    // Debugging
+    /// Debugging
     public static ClickAndSend classRef = null;
     Set<BluetoothDevice> pairedDevices;
     userData ud1;
